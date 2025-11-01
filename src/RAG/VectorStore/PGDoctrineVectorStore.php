@@ -1,6 +1,6 @@
 <?php
 
-namespace RAG\VectorStore;
+namespace App\RAG\VectorStore;
 
 use Doctrine\ORM\EntityManagerInterface;
 use NeuronAI\RAG\Document;

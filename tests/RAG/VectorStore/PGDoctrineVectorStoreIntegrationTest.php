@@ -1,7 +1,7 @@
 <?php
 
 use Doctrine\ORM\EntityManagerInterface;
-use RAG\VectorStore\PGDoctrineVectorStore;
+use App\RAG\VectorStore\PGDoctrineVectorStore;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use NeuronAI\RAG\Document;
 use NeuronAI\RAG\Embeddings\OllamaEmbeddingsProvider;
