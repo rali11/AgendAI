@@ -2,12 +2,12 @@
 
 namespace App\RAG\VectorStore;
 
+use App\RAG\VectorStore\Entity\DoctrineDocument;
 use Doctrine\ORM\EntityManagerInterface;
 use NeuronAI\RAG\Document;
 use NeuronAI\RAG\VectorStore\VectorStoreInterface;
-use App\RAG\VectorStore\Entity\DoctrineDocument;
-use Pgvector\Vector;
 use Pgvector\Doctrine\PgvectorSetup;
+use Pgvector\Vector;
 
 final class PGDoctrineVectorStore implements VectorStoreInterface
 {
@@ -42,7 +42,8 @@ final class PGDoctrineVectorStore implements VectorStoreInterface
     /**
      * Return docs most similar to the embedding.
      *
-     * @param  float[]  $embedding
+     * @param float[] $embedding
+     *
      * @return Document[]
      */
     public function similaritySearch(array $embedding): iterable

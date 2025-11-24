@@ -16,7 +16,7 @@ final class DoctrineDocument
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: 'vector', length:768)]
+    #[ORM\Column(type: 'vector', length: 768)]
     private ?Vector $embedding = null;
 
     #[ORM\Column(type: Types::TEXT)]
@@ -34,7 +34,7 @@ final class DoctrineDocument
     #[ORM\Column]
     private array $metadata = [];
 
-    static public function fromDocument(Document $document): self
+    public static function fromDocument(Document $document): self
     {
         $doctrineDocument = new self();
         $doctrineDocument->content = $document->getContent();
