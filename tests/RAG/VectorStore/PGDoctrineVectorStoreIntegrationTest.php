@@ -1,10 +1,10 @@
 <?php
 
-use Doctrine\ORM\EntityManagerInterface;
 use App\RAG\VectorStore\PGDoctrineVectorStore;
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Doctrine\ORM\EntityManagerInterface;
 use NeuronAI\RAG\Document;
 use NeuronAI\RAG\Embeddings\OllamaEmbeddingsProvider;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class PGDoctrineVectorStoreIntegrationTest extends KernelTestCase
 {
@@ -27,7 +27,7 @@ class PGDoctrineVectorStoreIntegrationTest extends KernelTestCase
         $contents = [
             ['text' => 'Raúl Eduardo Correa nació el 10 de Septiembre de 1995.', 'metadata' => ['birthdate' => '10 de Septiembre de 1995']],
             ['text' => 'Raúl Eduardo Correa vive en la ciudad de Temperley, provincia de Buenos Aires, país de Argentina.', 'metadata' => ['location' => 'Temperley, Buenos Aires, Argentina']],
-            ['text' => 'Raúl Eduardo Correa trabaja como programador en Mercado Libre.', 'metadata' => ['job' => 'programador en Mercado Libre']]
+            ['text' => 'Raúl Eduardo Correa trabaja como programador en Mercado Libre.', 'metadata' => ['job' => 'programador en Mercado Libre']],
         ];
         $documents = [];
 
