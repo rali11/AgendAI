@@ -3,7 +3,7 @@
 namespace App\RAG\VectorStore;
 
 use App\RAG\VectorStore\Entity\DoctrineDocument;
-use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\EntityManager;
 use NeuronAI\RAG\Document;
 use NeuronAI\RAG\VectorStore\VectorStoreInterface;
 use Pgvector\Doctrine\PgvectorSetup;
@@ -11,7 +11,7 @@ use Pgvector\Vector;
 
 final class PGDoctrineVectorStore implements VectorStoreInterface
 {
-    public function __construct(private EntityManagerInterface $entityManager, private int $k = 4)
+    public function __construct(private EntityManager $entityManager, private int $k = 4)
     {
         PgvectorSetup::registerTypes($entityManager);
         $entityManager->getConnection()->executeStatement('CREATE EXTENSION IF NOT EXISTS vector;');
