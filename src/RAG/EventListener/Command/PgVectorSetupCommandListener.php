@@ -1,6 +1,6 @@
 <?php
 
-namespace App\EventListener\Command;
+namespace App\RAG\EventListener\Command;
 
 use Doctrine\ORM\EntityManager;
 use Pgvector\Doctrine\PgvectorSetup;
