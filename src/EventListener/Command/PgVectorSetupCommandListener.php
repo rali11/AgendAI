@@ -2,14 +2,14 @@
 
 namespace App\EventListener\Command;
 
-use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\EntityManager;
 use Pgvector\Doctrine\PgvectorSetup;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 
 #[AsEventListener(event: 'console.command')]
 final class PgVectorSetupCommandListener
 {
-    public function __construct(private EntityManagerInterface $entityManager)
+    public function __construct(private EntityManager $entityManager)
     {
     }
 
