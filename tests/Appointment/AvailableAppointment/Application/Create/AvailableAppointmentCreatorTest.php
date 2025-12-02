@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Tests\Appointment\AvailableAppointment\Application;
+namespace App\Tests\Appointment\AvailableAppointment\Application\Create;
 
-use App\Appointment\AvailableAppointment\Application\AvailableAppointmentCreator;
+use App\Appointment\AvailableAppointment\Application\Create\AvailableAppointmentCreator;
 use App\Appointment\AvailableAppointment\Domain\AvailableAppointmentExistsException;
 use App\Appointment\AvailableAppointment\Domain\AvailableAppointmentRepository;
 use App\Tests\Appointment\AvailableAppointment\Domain\AvailableAppointmentMother;

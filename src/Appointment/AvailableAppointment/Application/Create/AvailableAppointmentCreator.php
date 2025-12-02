@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Appointment\AvailableAppointment\Application;
+namespace App\Appointment\AvailableAppointment\Application\Create;
 
 use App\Appointment\AvailableAppointment\Domain\AvailableAppointment;
 use App\Appointment\AvailableAppointment\Domain\AvailableAppointmentExistsException;
