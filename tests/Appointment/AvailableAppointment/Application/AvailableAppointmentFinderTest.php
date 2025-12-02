@@ -3,9 +3,9 @@
 namespace App\Tests\Appointment\AvailableAppointment\Application;
 
 use App\Appointment\AvailableAppointment\Application\AvailableAppointmentFinder;
+use App\Appointment\AvailableAppointment\Domain\AvailableAppointmentDoesNotExistException;
 use App\Appointment\AvailableAppointment\Domain\AvailableAppointmentRepository;
 use App\Tests\Appointment\AvailableAppointment\Domain\AvailableAppointmentMother;
-use App\Appointment\AvailableAppointment\Domain\AvailableAppointmentDoesNotExistException;
 use PHPUnit\Framework\TestCase;
 
 final class AvailableAppointmentFinderTest extends TestCase
