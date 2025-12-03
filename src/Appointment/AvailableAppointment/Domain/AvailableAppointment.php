@@ -12,11 +12,8 @@ final class AvailableAppointment
     ) {
     }
 
-    public static function create(
-        string $id,
-        \DateTimeImmutable $date,
-        int $durationInMinutes,
-    ): self {
+    public static function create(string $id, \DateTimeImmutable $date, int $durationInMinutes): self
+    {
         $availableAppointment = new self(
             $id,
             $date,
