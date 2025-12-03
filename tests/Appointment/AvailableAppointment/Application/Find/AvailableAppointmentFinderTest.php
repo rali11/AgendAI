@@ -6,11 +6,12 @@ use App\Appointment\AvailableAppointment\Application\Find\AvailableAppointmentFi
 use App\Appointment\AvailableAppointment\Domain\AvailableAppointmentDoesNotExistException;
 use App\Appointment\AvailableAppointment\Domain\AvailableAppointmentRepository;
 use App\Tests\Appointment\AvailableAppointment\Domain\AvailableAppointmentMother;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 final class AvailableAppointmentFinderTest extends TestCase
 {
-    private $repository;
+    private AvailableAppointmentRepository|MockObject $repository;
 
     private AvailableAppointmentFinder $finder;
 
@@ -20,7 +21,7 @@ final class AvailableAppointmentFinderTest extends TestCase
         $this->finder = new AvailableAppointmentFinder($this->repository);
     }
 
-    public function testItShouldFindAvailableAppointment(): void
+    public function testItShouldFindAnExistingAvailableAppointment(): void
     {
         $availableAppointment = AvailableAppointmentMother::random();
 
@@ -34,7 +35,7 @@ final class AvailableAppointmentFinderTest extends TestCase
         $this->assertEquals($availableAppointment, $found);
     }
 
-    public function testItShouldNotFindAvailableAppointment(): void
+    public function testItShouldNotFindAnInexistentAvailableAppointment(): void
     {
         $availableAppointment = AvailableAppointmentMother::random();
 
@@ -45,6 +46,6 @@ final class AvailableAppointmentFinderTest extends TestCase
 
         $this->expectException(AvailableAppointmentDoesNotExistException::class);
 
-        ($this->finder)($availableAppointment->id());
+        $this->finder->__invoke($availableAppointment->id());
     }
 }

@@ -6,13 +6,14 @@ use App\Appointment\AvailableAppointment\Application\Create\AvailableAppointment
 use App\Appointment\AvailableAppointment\Domain\AvailableAppointmentExistsException;
 use App\Appointment\AvailableAppointment\Domain\AvailableAppointmentRepository;
 use App\Tests\Appointment\AvailableAppointment\Domain\AvailableAppointmentMother;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 final class AvailableAppointmentCreatorTest extends TestCase
 {
     private AvailableAppointmentCreator $creator;
 
-    private $repository;
+    private AvailableAppointmentRepository|MockObject $repository;
 
     protected function setUp(): void
     {
@@ -28,6 +29,11 @@ final class AvailableAppointmentCreatorTest extends TestCase
             ->method('save')
             ->with($this->equalTo($availableAppointment));
 
+        $this->repository->expects($this->once())
+            ->method('searchByRange')
+            ->with($availableAppointment->date(), $availableAppointment->durationInMinutes())
+            ->willReturn([]);
+
         ($this->creator)(
             $availableAppointment->id(),
             $availableAppointment->date(),
@@ -35,9 +41,9 @@ final class AvailableAppointmentCreatorTest extends TestCase
         );
     }
 
-    public function testItShouldNotCreateAvailableAppointmentInSameRange(): void
+    public function testItShouldNotCreateAvailableAppointmentInAnExistingRange(): void
     {
-        $existedAvailableAppointment = AvailableAppointmentMother::create(
+        $existingAvailableAppointment = AvailableAppointmentMother::create(
             date: new \DateTimeImmutable('2024-10-10 10:00:00'),
             durationInMinutes: 30
         );
@@ -48,13 +54,13 @@ final class AvailableAppointmentCreatorTest extends TestCase
         );
 
         $this->repository->expects($this->once())
-            ->method('searchByDateAndDuration')
+            ->method('searchByRange')
             ->with($newAvailableAppointment->date(), $newAvailableAppointment->durationInMinutes())
-            ->willReturn($existedAvailableAppointment);
+            ->willReturn([$existingAvailableAppointment]);
 
         $this->expectException(AvailableAppointmentExistsException::class);
 
-        ($this->creator)(
+        $this->creator->__invoke(
             $newAvailableAppointment->id(),
             $newAvailableAppointment->date(),
             $newAvailableAppointment->durationInMinutes()

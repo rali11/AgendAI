@@ -20,7 +20,9 @@ final class AvailableAppointmentCreator
             $durationInMinutes
         );
 
-        if (null !== $this->repository->searchByDateAndDuration($date, $durationInMinutes)) {
+        $result = $this->repository->searchByRange($date, $durationInMinutes);
+
+        if (count($result) > 0) {
             throw new AvailableAppointmentExistsException();
         }
 
