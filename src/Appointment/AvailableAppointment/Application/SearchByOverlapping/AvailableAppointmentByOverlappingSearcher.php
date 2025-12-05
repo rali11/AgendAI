@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Appointment\AvailableAppointment\Application\SearchByRange;
+namespace App\Appointment\AvailableAppointment\Application\SearchByOverlapping;
 
 use App\Appointment\AvailableAppointment\Domain\AvailableAppointmentRepository;
 
-final class AvailableAppointmentByRangeSearcher
+final class AvailableAppointmentByOverlappingSearcher
 {
     private AvailableAppointmentRepository $repository;
 
