@@ -20,7 +20,7 @@ final class AvailableAppointmentCreator
             $durationInMinutes
         );
 
-        $result = $this->repository->searchByRange($date, $durationInMinutes);
+        $result = $this->repository->searchByOverlapping($date, $durationInMinutes);
 
         if (count($result) > 0) {
             throw new AvailableAppointmentExistsException();

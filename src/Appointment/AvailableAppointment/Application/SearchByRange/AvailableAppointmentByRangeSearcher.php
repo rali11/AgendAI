@@ -15,6 +15,6 @@ final class AvailableAppointmentByRangeSearcher
 
     public function __invoke(\DateTimeImmutable $date, int $durationInMinutes): array
     {
-        return $this->repository->searchByRange($date, $durationInMinutes);
+        return $this->repository->searchByOverlapping($date, $durationInMinutes);
     }
 }

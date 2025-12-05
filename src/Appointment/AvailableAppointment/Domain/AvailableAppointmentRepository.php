@@ -8,5 +8,5 @@ interface AvailableAppointmentRepository
 
     public function search(string $id): ?AvailableAppointment;
 
-    public function searchByRange(\DateTimeImmutable $date, int $durationInMinutes): array;
+    public function searchByOverlapping(\DateTimeImmutable $date, int $durationInMinutes): array;
 }

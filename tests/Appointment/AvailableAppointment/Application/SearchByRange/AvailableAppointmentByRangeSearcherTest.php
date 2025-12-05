@@ -34,7 +34,7 @@ final class AvailableAppointmentByRangeSearcherTest extends TestCase
 
         $this->repository
             ->expects($this->once())
-            ->method('searchByRange')
+            ->method('searchByOverlapping')
             ->with($newAvailableAppointment->date(), $newAvailableAppointment->durationInMinutes())
             ->willReturn([$existingAvailableAppointment]);
 

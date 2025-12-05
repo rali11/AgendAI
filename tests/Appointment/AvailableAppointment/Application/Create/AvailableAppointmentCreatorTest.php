@@ -30,7 +30,7 @@ final class AvailableAppointmentCreatorTest extends TestCase
             ->with($this->equalTo($availableAppointment));
 
         $this->repository->expects($this->once())
-            ->method('searchByRange')
+            ->method('searchByOverlapping')
             ->with($availableAppointment->date(), $availableAppointment->durationInMinutes())
             ->willReturn([]);
 
@@ -41,7 +41,7 @@ final class AvailableAppointmentCreatorTest extends TestCase
         );
     }
 
-    public function testItShouldNotCreateAvailableAppointmentInAnExistingRange(): void
+    public function testItShouldNotCreateAvailableAppointmentByOverlapping(): void
     {
         $existingAvailableAppointment = AvailableAppointmentMother::create(
             date: new \DateTimeImmutable('2024-10-10 10:00:00'),
@@ -54,7 +54,7 @@ final class AvailableAppointmentCreatorTest extends TestCase
         );
 
         $this->repository->expects($this->once())
-            ->method('searchByRange')
+            ->method('searchByOverlapping')
             ->with($newAvailableAppointment->date(), $newAvailableAppointment->durationInMinutes())
             ->willReturn([$existingAvailableAppointment]);
 
