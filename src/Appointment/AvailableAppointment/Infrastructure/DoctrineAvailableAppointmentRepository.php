@@ -20,15 +20,30 @@ final class DoctrineAvailableAppointmentRepository extends ServiceEntityReposito
         $this->getEntityManager()->flush();
     }
 
+    public function update(AvailableAppointment $availableAppointment): void
+    {
+        $this->getEntityManager()->flush();
+    }
+
     public function search(string $id): ?AvailableAppointment
     {
-        return $this->find($id);
+        $queryBuilder = $this->createQueryBuilder('availableAppointment');
+        $queryBuilder
+            ->where(
+                $queryBuilder->expr()->andX(
+                    'availableAppointment.id = :id',
+                    'availableAppointment.isActive = true'
+                )
+            )
+            ->setParameter('id', $id);
+
+        return $queryBuilder->getQuery()->getOneOrNullResult();
     }
 
     public function searchByOverlapping(\DateTimeImmutable $date, int $durationInMinutes): array
     {
         $endDateTime = $date->modify("+{$durationInMinutes} minutes");
-        
+
         $queryBuilder = $this->createQueryBuilder('availableAppointment');
         $queryBuilder
             ->where(
@@ -39,7 +54,7 @@ final class DoctrineAvailableAppointmentRepository extends ServiceEntityReposito
             )
             ->setParameter('startTime', $date)
             ->setParameter('endTime', $endDateTime);
-            
+
         return $queryBuilder->getQuery()->getResult();
     }
 }
