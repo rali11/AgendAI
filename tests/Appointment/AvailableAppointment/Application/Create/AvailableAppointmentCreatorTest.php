@@ -3,7 +3,7 @@
 namespace App\Tests\Appointment\AvailableAppointment\Application\Create;
 
 use App\Appointment\AvailableAppointment\Application\Create\AvailableAppointmentCreator;
-use App\Appointment\AvailableAppointment\Domain\AvailableAppointmentExistsException;
+use App\Appointment\AvailableAppointment\Domain\AvailableAppointmentExistException;
 use App\Appointment\AvailableAppointment\Domain\AvailableAppointmentRepository;
 use App\Tests\Appointment\AvailableAppointment\Domain\AvailableAppointmentMother;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -34,7 +34,7 @@ final class AvailableAppointmentCreatorTest extends TestCase
             ->with($availableAppointment->date(), $availableAppointment->durationInMinutes())
             ->willReturn([]);
 
-        ($this->creator)(
+        $this->creator->__invoke(
             $availableAppointment->id(),
             $availableAppointment->date(),
             $availableAppointment->durationInMinutes()
@@ -58,7 +58,7 @@ final class AvailableAppointmentCreatorTest extends TestCase
             ->with($newAvailableAppointment->date(), $newAvailableAppointment->durationInMinutes())
             ->willReturn([$existingAvailableAppointment]);
 
-        $this->expectException(AvailableAppointmentExistsException::class);
+        $this->expectException(AvailableAppointmentExistException::class);
 
         $this->creator->__invoke(
             $newAvailableAppointment->id(),

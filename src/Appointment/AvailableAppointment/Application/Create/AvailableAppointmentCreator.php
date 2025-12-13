@@ -3,7 +3,7 @@
 namespace App\Appointment\AvailableAppointment\Application\Create;
 
 use App\Appointment\AvailableAppointment\Domain\AvailableAppointment;
-use App\Appointment\AvailableAppointment\Domain\AvailableAppointmentExistsException;
+use App\Appointment\AvailableAppointment\Domain\AvailableAppointmentExistException;
 use App\Appointment\AvailableAppointment\Domain\AvailableAppointmentRepository;
 
 final class AvailableAppointmentCreator
@@ -23,7 +23,7 @@ final class AvailableAppointmentCreator
         $result = $this->repository->searchByOverlapping($date, $durationInMinutes);
 
         if (count($result) > 0) {
-            throw new AvailableAppointmentExistsException();
+            throw new AvailableAppointmentExistException();
         }
 
         $this->repository->save($availableAppointment);

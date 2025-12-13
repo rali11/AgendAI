@@ -2,7 +2,7 @@
 
 namespace App\Appointment\AvailableAppointment\Domain;
 
-final class AvailableAppointmentExistsException extends \Exception
+final class AvailableAppointmentExistException extends \Exception
 {
     public function __construct()
     {

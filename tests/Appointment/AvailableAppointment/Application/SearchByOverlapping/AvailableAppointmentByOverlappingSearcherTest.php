@@ -1,23 +1,23 @@
 <?php
 
-namespace App\Tests\Appointment\AvailableAppointment\Application\SearchByRange;
+namespace App\Tests\Appointment\AvailableAppointment\Application\SearchByOverlapping;
 
-use App\Appointment\AvailableAppointment\Application\SearchByRange\AvailableAppointmentByRangeSearcher;
+use App\Appointment\AvailableAppointment\Application\SearchByOverlapping\AvailableAppointmentByOverlappingSearcher;
 use App\Appointment\AvailableAppointment\Domain\AvailableAppointmentRepository;
 use App\Tests\Appointment\AvailableAppointment\Domain\AvailableAppointmentMother;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
-final class AvailableAppointmentByRangeSearcherTest extends TestCase
+final class AvailableAppointmentByOverlappingSearcherTest extends TestCase
 {
     private AvailableAppointmentRepository|MockObject $repository;
 
-    private AvailableAppointmentByRangeSearcher $searcher;
+    private AvailableAppointmentByOverlappingSearcher $searcher;
 
     public function setUp(): void
     {
         $this->repository = $this->createMock(AvailableAppointmentRepository::class);
-        $this->searcher = new AvailableAppointmentByRangeSearcher($this->repository);
+        $this->searcher = new AvailableAppointmentByOverlappingSearcher($this->repository);
     }
 
     public function testItShouldFoundAvailableAppointmentsInExistingRange(): void
