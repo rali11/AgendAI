@@ -27,19 +27,32 @@ final class DoctrineAvailableAppointmentRepositoryTest extends KernelTestCase
         $availableAppointment = AvailableAppointmentMother::random();
 
         $this->expectNotToPerformAssertions();
-        
+
         $this->repository->save($availableAppointment);
     }
 
     public function testItShouldFindAnAvailableAppointmentById(): void
     {
         $availableAppointment = AvailableAppointmentMother::random();
-        
+
         $this->repository->save($availableAppointment);
 
         $fetchedAvailableAppointment = $this->repository->search($availableAppointment->Id());
 
         $this->assertEquals($availableAppointment, $fetchedAvailableAppointment);
+    }
+
+    public function testItShouldUpdateExistingAvailableAppointment(): void
+    {
+        $availableAppointment = AvailableAppointmentMother::random();
+        $this->repository->save($availableAppointment);
+
+        $availableAppointment->remove();
+        $this->repository->update($availableAppointment);
+
+        $fetchedAvailableAppointment = $this->repository->search($availableAppointment->Id());
+
+        $this->assertNull($fetchedAvailableAppointment);
     }
 
     public function testItShouldFindExistingAvailableAppointmentOverlappedByNewOne(): void
