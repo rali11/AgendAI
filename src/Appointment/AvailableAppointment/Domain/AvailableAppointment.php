@@ -24,6 +24,11 @@ final class AvailableAppointment
         return $availableAppointment;
     }
 
+    public function remove(): void
+    {
+        $this->isActive = false;
+    }
+
     public function id(): string
     {
         return $this->id;
