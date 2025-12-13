@@ -3,8 +3,8 @@
 namespace App\Appointment\AvailableAppointment\Application\Find;
 
 use App\Appointment\AvailableAppointment\Domain\AvailableAppointment;
-use App\Appointment\AvailableAppointment\Domain\AvailableAppointmentDoesNotExistException;
 use App\Appointment\AvailableAppointment\Domain\AvailableAppointmentRepository;
+use App\Appointment\AvailableAppointment\Domain\Find\AvailableAppointmentFinder as AvailableAppointmentFinderDomain;
 
 final class AvailableAppointmentFinder
 {
@@ -14,12 +14,8 @@ final class AvailableAppointmentFinder
 
     public function __invoke(string $id): ?AvailableAppointment
     {
-        $availableAppointment = $this->repository->search($id);
+        $finder = new AvailableAppointmentFinderDomain($this->repository);
 
-        if (null === $availableAppointment) {
-            throw new AvailableAppointmentDoesNotExistException();
-        }
-
-        return $availableAppointment;
+        return $finder->__invoke($id);
     }
 }
