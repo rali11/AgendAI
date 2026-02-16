@@ -29,6 +29,12 @@ final class AvailableAppointment
         $this->isActive = false;
     }
 
+    public function update(\DateTimeImmutable $date, int $durationInMinutes): void
+    {
+        $this->date = $date;
+        $this->durationInMinutes = $durationInMinutes;
+    }
+
     public function id(): string
     {
         return $this->id;
