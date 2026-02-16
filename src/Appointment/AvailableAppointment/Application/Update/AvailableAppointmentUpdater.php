@@ -27,7 +27,7 @@ final class AvailableAppointmentUpdater
         $overlappingAppointments = $this->repository->searchByOverlapping($date, $durationInMinutes);
         $overlappingAppointments = array_filter(
             $overlappingAppointments,
-            fn($appointment) => $appointment->id() !== $id
+            fn ($appointment) => $appointment->id() !== $id
         );
 
         if (count($overlappingAppointments) > 0) {

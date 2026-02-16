@@ -4,10 +4,9 @@ namespace App\Appointment\AvailableAppointment\Application\Create;
 
 use App\Appointment\AvailableAppointment\Domain\AvailableAppointment;
 use App\Appointment\AvailableAppointment\Domain\AvailableAppointmentExistException;
+use App\Appointment\AvailableAppointment\Domain\AvailableAppointmentPastDateException;
 use App\Appointment\AvailableAppointment\Domain\AvailableAppointmentRepository;
 use App\Appointment\AvailableAppointment\Domain\Clock\Clock;
-use App\Appointment\AvailableAppointment\Domain\AvailableAppointmentPastDateException;
-
 
 final class AvailableAppointmentCreator
 {
