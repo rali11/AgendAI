@@ -55,6 +55,25 @@ final class DoctrineAvailableAppointmentRepositoryTest extends KernelTestCase
         $this->assertNull($fetchedAvailableAppointment);
     }
 
+    public function testItShouldUpdateDateAndDurationOfExistingAvailableAppointment(): void
+    {
+        $availableAppointment = AvailableAppointmentMother::create(
+            date: new \DateTimeImmutable('2024-07-01 10:00:00'),
+            durationInMinutes: 30
+        );
+        $this->repository->save($availableAppointment);
+
+        $newDate = new \DateTimeImmutable('2024-07-02 14:00:00');
+        $newDuration = 45;
+        $availableAppointment->update($newDate, $newDuration);
+        $this->repository->update($availableAppointment);
+
+        $fetchedAvailableAppointment = $this->repository->search($availableAppointment->id());
+
+        $this->assertEquals($newDate, $fetchedAvailableAppointment->date());
+        $this->assertEquals($newDuration, $fetchedAvailableAppointment->durationInMinutes());
+    }
+
     public function testItShouldFindExistingAvailableAppointmentOverlappedByNewOne(): void
     {
         $existingAvailableAppointment = AvailableAppointmentMother::create(
