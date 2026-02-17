@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Appointment\BookedAppointment\Infrastructure;
+namespace App\Appointment\BookedAppointment\Infrastructure\Persistence\Doctrine;
 
 use App\Appointment\BookedAppointment\Domain\BookedAppointment;
 use App\Appointment\BookedAppointment\Domain\BookedAppointmentRepository;

@@ -2,8 +2,8 @@
 
 namespace App\Tests\Appointment\BookedAppointment\Infrastructure;
 
-use App\Appointment\AvailableAppointment\Infrastructure\DoctrineAvailableAppointmentRepository;
-use App\Appointment\BookedAppointment\Infrastructure\DoctrineBookedAppointmentRepository;
+use App\Appointment\AvailableAppointment\Infrastructure\Persistence\Doctrine\DoctrineAvailableAppointmentRepository;
+use App\Appointment\BookedAppointment\Infrastructure\Persistence\Doctrine\DoctrineBookedAppointmentRepository;
 use App\Tests\Appointment\AvailableAppointment\Domain\AvailableAppointmentMother;
 use App\Tests\Appointment\BookedAppointment\Domain\BookedAppointmentMother;
 use Ramsey\Uuid\Uuid;
