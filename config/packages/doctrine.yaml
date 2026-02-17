@@ -21,9 +21,15 @@ doctrine:
             AvailableAppointment:
                 type: xml
                 is_bundle: false
-                dir: '%kernel.project_dir%/src/Appointment/AvailableAppointment/Infrastructure/Doctrine'
+                dir: '%kernel.project_dir%/src/Appointment/AvailableAppointment/Infrastructure/Persistence/Doctrine'
                 prefix: 'App\Appointment\AvailableAppointment\Domain'
                 alias: Appointment
+            BookedAppointment:
+                type: xml
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/Appointment/BookedAppointment/Infrastructure/Persistence/Doctrine'
+                prefix: 'App\Appointment\BookedAppointment\Domain'
+                alias: BookedAppointment
         controller_resolver:
             auto_mapping: false
 

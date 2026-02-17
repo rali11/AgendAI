@@ -2,7 +2,7 @@
 
 namespace App\Tests\Appointment\AvailableAppointment\Infrastructure;
 
-use App\Appointment\AvailableAppointment\Infrastructure\DoctrineAvailableAppointmentRepository;
+use App\Appointment\AvailableAppointment\Infrastructure\Persistence\Doctrine\DoctrineAvailableAppointmentRepository;
 use App\Tests\Appointment\AvailableAppointment\Domain\AvailableAppointmentMother;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
@@ -19,6 +19,7 @@ final class DoctrineAvailableAppointmentRepositoryTest extends KernelTestCase
 
         $entityManager = $container->get('doctrine')->getManager();
         $connection = $entityManager->getConnection();
+        $connection->executeStatement('DELETE FROM booked_appointment');
         $connection->executeStatement('DELETE FROM available_appointment');
     }
 
