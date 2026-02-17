@@ -8,6 +8,5 @@
         <field name="date" type="datetime" column="date_time" />
         <field name="durationInMinutes" type="integer" column="duration_minutes" />
         <field name="isActive" type="boolean" column="is_active" />
-        <one-to-many field="bookedAppointments" target-entity="App\Appointment\BookedAppointment\Domain\BookedAppointment" mapped-by="availableAppointmentId" />
     </entity>
 </doctrine-mapping>

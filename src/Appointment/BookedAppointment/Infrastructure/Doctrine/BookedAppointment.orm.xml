@@ -5,9 +5,7 @@
     <entity name="App\Appointment\BookedAppointment\Domain\BookedAppointment" table="booked_appointment">
         <id name="id" type="guid" column="id">
         </id>
-        <many-to-one field="availableAppointmentId" target-entity="App\Appointment\AvailableAppointment\Domain\AvailableAppointment">
-            <join-column name="available_appointment_id" referenced-column-name="id" nullable="false" />
-        </many-to-one>
+        <field name="availableAppointmentId" type="guid" column="available_appointment_id" />
         <field name="email" type="string" column="email" length="255" />
         <field name="isActive" type="boolean" column="is_active" />
     </entity>

@@ -19,6 +19,7 @@ final class DoctrineAvailableAppointmentRepositoryTest extends KernelTestCase
 
         $entityManager = $container->get('doctrine')->getManager();
         $connection = $entityManager->getConnection();
+        $connection->executeStatement('DELETE FROM booked_appointment');
         $connection->executeStatement('DELETE FROM available_appointment');
     }
 

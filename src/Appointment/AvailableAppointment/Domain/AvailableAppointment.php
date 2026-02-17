@@ -2,20 +2,14 @@
 
 namespace App\Appointment\AvailableAppointment\Domain;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-
 final class AvailableAppointment
 {
-    private Collection $bookedAppointments;
-
     public function __construct(
         private string $id,
         private \DateTimeImmutable $date,
         private int $durationInMinutes,
         private bool $isActive,
     ) {
-        $this->bookedAppointments = new ArrayCollection();
     }
 
     public static function create(string $id, \DateTimeImmutable $date, int $durationInMinutes): self
